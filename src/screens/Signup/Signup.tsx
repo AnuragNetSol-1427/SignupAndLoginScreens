@@ -2,24 +2,25 @@ import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Ima
 import React, {useState, useRef} from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-const Login = () => {
+const Signup = () => {
 
     // All the useStates are here
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [pincode, setPincode] = useState('');
     const [secureTextEntry, setSecureTextEntry] = useState(true);
     const [uriImage, setUriImage] = useState(`https://cdn2.iconfinder.com/data/icons/pittogrammi/142/61-512.png`)
 
     // All the ref's are here
+    const emailRef = useRef()
     const passwordRef = useRef()
-    
+    const pinRef = useRef()
+
     // Navigation
     const navigator = useNavigation();
-    const signUpBtn = () => {
-        navigator.navigate("Signup")
-    }
-    const forgotPasswordBtn = () => {
-        navigator.navigate("ForgotPassword")
+    const signInBtn = () => {
+        navigator.navigate("Login")
     }
 
     // On Press Functions
@@ -27,9 +28,8 @@ const Login = () => {
         setSecureTextEntry(!secureTextEntry)
         setUriImage(secureTextEntry ? `https://cdn2.iconfinder.com/data/icons/pittogrammi/142/61-512.png` : `https://static-00.iconduck.com/assets.00/eye-password-hide-icon-512x512-iv45hct9.png`)
     }
-
   return (
-    <SafeAreaView style={styles.loginParentContainer}>
+    <SafeAreaView style={styles.signupParentContainer}>
         <View style={[styles.borderAndWidth, styles.container]}>
             <View style={[styles.borderAndWidth, styles.content]}>
                 <View style={[styles.borderAndWidth, styles.logo]}>
@@ -40,50 +40,51 @@ const Login = () => {
     }} />
                 </View>
                 <View style={[styles.borderAndWidth, styles.heading]}>
-                    <Text style={styles.headingText}>Sign in</Text>
+                    <Text style={styles.headingText}>Sign up</Text>
                 </View>
-                <View style={[styles.borderAndWidth, styles.loginTagline]}>
+                <View style={[styles.borderAndWidth, styles.signupTagline]}>
                     {/* <Text style={styles.loginTaglineText}>Sign in now to access your exercises and saved music</Text> */}
-                    <Text style={styles.loginTaglineText}>To proceed with an order, please log in or register an account</Text>
+                    <Text style={styles.signupTaglineText}>To proceed with an order, please log in or register an account</Text>
                 </View>
                 <View style={[styles.borderAndWidth, styles.textInputContainer]}>
-                    <TextInput style={styles.textInput} returnKeyType={'next'} onSubmitEditing={()=>passwordRef.current.focus()} keyboardType={'email-address'} placeholder={'Email Address'} onChangeText={val => {setEmail(val)}} />
+                    <TextInput style={styles.textInput} returnKeyType={'next'} placeholder={'Your Username'} onChangeText={val => {setUsername(val)}} onSubmitEditing={() => emailRef.current.focus()} />
+                </View>
+                <View style={[styles.borderAndWidth, styles.textInputContainer]}>
+                    <TextInput style={styles.textInput} keyboardType={'email-address'} returnKeyType={'next'} placeholder={'Email Address'} onChangeText={val => {setEmail(val)}} ref={emailRef} onSubmitEditing={()=>passwordRef.current.focus()} />
                 </View>
                 <View style={[styles.borderAndWidth, styles.textInputContainer, styles.passwordContainer]}>
-                    <TextInput style={styles.passwordInput} secureTextEntry={secureTextEntry} placeholder={'Password'} onChangeText={val => {setPassword(val)}} ref={passwordRef} />
+                    <TextInput style={styles.passwordInput} returnKeyType={'next'} secureTextEntry={secureTextEntry} placeholder={'Password'} onChangeText={val => {setPassword(val)}} ref={passwordRef} onSubmitEditing={()=>pinRef.current.focus()} />
+                    
                     <TouchableOpacity onPress={toggleSecureTextEntry} style={styles.eyeContainer}>
-                    {/* <Image style={styles.eye} source={{uri: `https://cdn2.iconfinder.com/data/icons/pittogrammi/142/61-512.png`}} /> */}
-                    <Image style={styles.eye} source={{uri: uriImage}} />
+                        <Image style={styles.eye} source={{uri: uriImage}} />
                     </TouchableOpacity>
                 </View>
-                <View style={styles.forgotPassword}>
-                    <TouchableOpacity onPress={forgotPasswordBtn}>
-                    <Text style={styles.forgotPasswordText}>Forgot Password</Text>
-                    </TouchableOpacity>
+                <View style={[styles.borderAndWidth, styles.textInputContainer]}>
+                    <TextInput style={styles.textInput} placeholder={'Pincode'} keyboardType={'numeric'} onChangeText={val => {setPincode(val)}} ref={pinRef} />
                 </View>
-                <TouchableOpacity style={[styles.borderAndWidth, styles.loginBtnContainer]}>
-                    <Text style={styles.loginBtnContainerText}>SIGN IN</Text>
+                <TouchableOpacity style={[styles.borderAndWidth, styles.signupBtnContainer]}>
+                    <Text style={styles.signupBtnContainerText}>SIGN UP</Text>
                 </TouchableOpacity>
-                <View style={styles.signUpLink}>
-                    <Text style={styles.doNotHaveAccountText}>Don't have an account?</Text>
-                    <TouchableOpacity onPress={signUpBtn} >
-                        <Text style={styles.signUpLinkText}>Sign Up</Text>
+                <View style={styles.signinLink}>
+                    <Text style={styles.alreadyHaveAccountText}>Already have an account?</Text>
+                    <TouchableOpacity onPress={signInBtn} >
+                        <Text style={styles.signinLinkText}>Sign in</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-            {/* <Text>Login</Text> */}
+            {/* <Text>Signup</Text> */}
         </View>
     </SafeAreaView>
   )
 }
 
+
 const styles = StyleSheet.create({
     // borderAndWidth: {
-    //     borderColor: 'black',
-    //     borderWidth: 1,
-    // },
-    loginParentContainer: {
-        // backgroundColor: 'grey',
+    //         borderColor: 'black',
+    //         borderWidth: 1,
+    //     },
+    signupParentContainer: {
         backgroundColor: 'white',
         height: '100%',
         width: '100%',
@@ -118,12 +119,12 @@ const styles = StyleSheet.create({
         color: 'black',
         paddingVertical: 5,
     },
-    loginTagline: {
+    signupTagline: {
         // borderColor: 'black',
         // borderWidth: 1,
         paddingVertical: 5,
     },
-    loginTaglineText: {
+    signupTaglineText: {
         fontSize: 16,
     },
     textInputContainer: {
@@ -154,33 +155,27 @@ const styles = StyleSheet.create({
         width: 27,
         marginTop: 15,
     },
-    forgotPassword: {
-        marginTop: 10,
-    },
-    forgotPasswordText: {
-        textAlign: 'right',
-    },
-    loginBtnContainer: {
+    signupBtnContainer: {
         padding: 8,
         backgroundColor: '#60AA59',
         borderRadius: 10,
         marginTop: 60,
     },
-    loginBtnContainerText: {
+    signupBtnContainerText: {
         textAlign: 'center',
         fontSize: 25,
         color: 'white',
     },
-    signUpLink: {
+    signinLink: {
         marginTop: '5%',
     }, 
-    doNotHaveAccountText: {
+    alreadyHaveAccountText: {
         textAlign: 'right',
     },
-    signUpLinkText: {
+    signinLinkText: {
         textAlign: 'right',
         color: '#60AA59',
     }
 })
 
-export default Login
+export default Signup

@@ -3,13 +3,14 @@ import React from 'react';
 import {
   SafeAreaView,
 } from 'react-native';
-import Login from './src/screens/Login/Login';
+import Signup from './src/screens/Signup/Signup';
 
 function App(): JSX.Element {
 
   return (
     <SafeAreaView>
-      <Login />
+      {/* <Login /> */}
+      <Signup />
     </SafeAreaView>
   );
 }
