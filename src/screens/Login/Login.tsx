@@ -22,11 +22,21 @@ const Login = () => {
         navigator.navigate("ForgotPassword")
     }
 
+     // All the regular expressions are here
+     const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+     const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+ 
+      // Checkers
+      const emailCheck  = email.length > 0 && (emailRegEx.test(email))
+      const passwordCheck  = password.length > 0 && (passwordRegEx.test(password))
+
     // On Press Functions
     const toggleSecureTextEntry = () => {
         setSecureTextEntry(!secureTextEntry)
         setUriImage(secureTextEntry ? `https://cdn2.iconfinder.com/data/icons/pittogrammi/142/61-512.png` : `https://static-00.iconduck.com/assets.00/eye-password-hide-icon-512x512-iv45hct9.png`)
     }
+
+    const forOpacity = (emailCheck && passwordCheck) ? styles.forOpacityEnabled : styles.forOpacityDisabled;
 
   return (
     <SafeAreaView style={styles.loginParentContainer}>
@@ -61,7 +71,7 @@ const Login = () => {
                     <Text style={styles.forgotPasswordText}>Forgot Password</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={[styles.borderAndWidth, styles.loginBtnContainer]}>
+                <TouchableOpacity style={[styles.borderAndWidth, styles.loginBtnContainer, forOpacity]}>
                     <Text style={styles.loginBtnContainerText}>SIGN IN</Text>
                 </TouchableOpacity>
                 <View style={styles.signUpLink}>
@@ -171,6 +181,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: 'white',
     },
+    forOpacityEnabled: {
+        opacity: 1,
+      },
+      forOpacityDisabled: {
+        opacity: 0.5,
+      },
     signUpLink: {
         marginTop: '5%',
     }, 

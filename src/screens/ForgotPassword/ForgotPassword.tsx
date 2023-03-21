@@ -1,9 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image } from 'react-native'
 
 
 const ForgotPassword = () => {
+
+    // All the useStates are here 
+    const [email, setEmail] = useState('');
+
+    // Navigation
   const navigator = useNavigation();
     const signUpBtn = () => {
         navigator.navigate("Signup")
@@ -11,6 +16,17 @@ const ForgotPassword = () => {
     const signInBtn = () => {
         navigator.navigate("Login")
     }
+
+    // Regular Expressions
+    const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    // Checkers
+    const emailCheck  = email.length > 0 && (emailRegEx.test(email))
+
+    // On press Functions
+    // const forOpacity = email.length > 0 ? styles.forOpacityEnabled : styles.forOpacityDisabled;
+    const forOpacity = emailCheck ? styles.forOpacityEnabled : styles.forOpacityDisabled;
+
   return (
     <SafeAreaView style={styles.forgotPasswordParentContainer}>
         <View style={[styles.borderAndWidth, styles.container]}>
@@ -30,10 +46,10 @@ const ForgotPassword = () => {
                     <Text style={styles.forgotPasswordTaglineText}>You will receive an email, after entering the email and proceed</Text>
                 </View>
                 <View style={[styles.borderAndWidth, styles.textInputContainer]}>
-                    <TextInput style={styles.textInput} placeholder={'Email Address'} />
+                    <TextInput style={styles.textInput} placeholder={'Email Address'} onChangeText={val => {setEmail(val)}} />
                 </View>
                 
-                <TouchableOpacity style={[styles.borderAndWidth, styles.forgotPasswordBtnContainer]}>
+                <TouchableOpacity style={[styles.borderAndWidth, styles.forgotPasswordBtnContainer, forOpacity]}>
                     <Text style={styles.forgotPasswordBtnContainerText}>Forgot Password</Text>
                 </TouchableOpacity>
 
@@ -128,6 +144,12 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 25,
       color: 'white',
+  },
+  forOpacityEnabled: {
+    opacity: 1,
+  },
+  forOpacityDisabled: {
+    opacity: 0.5,
   },
   navigationLink: {
       marginTop: '5%',

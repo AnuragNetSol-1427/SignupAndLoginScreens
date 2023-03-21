@@ -23,11 +23,24 @@ const Signup = () => {
         navigator.navigate("Login")
     }
 
+    // All the regular expressions are here
+    const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
+     // Checkers
+     const usernameCheck  = username.length > 0 
+     const emailCheck  = email.length > 0 && (emailRegEx.test(email))
+     const passwordCheck  = password.length > 0 && (passwordRegEx.test(password))
+     const pincodeCheck  = pincode.length === 6
+
     // On Press Functions
     const toggleSecureTextEntry = () => {
         setSecureTextEntry(!secureTextEntry)
         setUriImage(secureTextEntry ? `https://cdn2.iconfinder.com/data/icons/pittogrammi/142/61-512.png` : `https://static-00.iconduck.com/assets.00/eye-password-hide-icon-512x512-iv45hct9.png`)
     }
+
+    const forOpacity = (usernameCheck && emailCheck && passwordCheck && pincodeCheck) ? styles.forOpacityEnabled : styles.forOpacityDisabled;
+
   return (
     <SafeAreaView style={styles.signupParentContainer}>
         <View style={[styles.borderAndWidth, styles.container]}>
@@ -62,7 +75,7 @@ const Signup = () => {
                 <View style={[styles.borderAndWidth, styles.textInputContainer]}>
                     <TextInput style={styles.textInput} placeholder={'Pincode'} keyboardType={'numeric'} onChangeText={val => {setPincode(val)}} ref={pinRef} />
                 </View>
-                <TouchableOpacity style={[styles.borderAndWidth, styles.signupBtnContainer]}>
+                <TouchableOpacity style={[styles.borderAndWidth, styles.signupBtnContainer, forOpacity]}>
                     <Text style={styles.signupBtnContainerText}>SIGN UP</Text>
                 </TouchableOpacity>
                 <View style={styles.signinLink}>
@@ -166,6 +179,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: 'white',
     },
+    forOpacityEnabled: {
+        opacity: 1,
+      },
+      forOpacityDisabled: {
+        opacity: 0.5,
+      },
     signinLink: {
         marginTop: '5%',
     }, 
