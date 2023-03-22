@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 import React, {useState, useRef} from 'react'
 import { useNavigation } from '@react-navigation/native'
 
@@ -72,7 +72,12 @@ const Login = () => {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={[styles.borderAndWidth, styles.loginBtnContainer, forOpacity]}>
-                    <Text style={styles.loginBtnContainerText}>SIGN IN</Text>
+                    <View style={[styles.loginBtnTextContainer, styles.borderAndWidth]}>
+                        <Text style={styles.loginBtnContainerText}>SIGN IN</Text>
+                    </View>
+                    <View style={[styles.loginBtnActivityIndicatorContainer, styles.borderAndWidth]}>
+                        <ActivityIndicator size="small" />
+                    </View>
                 </TouchableOpacity>
                 <View style={styles.signUpLink}>
                     <Text style={styles.doNotHaveAccountText}>Don't have an account?</Text>
@@ -179,19 +184,30 @@ const styles = StyleSheet.create({
         backgroundColor: '#60AA59',
         borderRadius: 10,
         marginTop: 60,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    loginBtnTextContainer: {
+        width: '90%',
+        // justifyContent: 'flex-end',
     },
     loginBtnContainerText: {
         textAlign: 'center',
         fontSize: 25,
+        marginLeft: 33,
         color: 'white',
         fontFamily: 'Poppins-Medium',
+    },
+    loginBtnActivityIndicatorContainer: {
+        justifyContent: "center",
+        width: '10%',
     },
     forOpacityEnabled: {
         opacity: 1,
       },
-      forOpacityDisabled: {
+    forOpacityDisabled: {
         opacity: 0.5,
-      },
+    },
     signUpLink: {
         marginTop: '5%',
     }, 

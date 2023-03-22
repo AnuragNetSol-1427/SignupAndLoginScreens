@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 
 
 const ForgotPassword = () => {
@@ -49,8 +49,16 @@ const ForgotPassword = () => {
                     <TextInput style={styles.textInput} placeholder={'Email Address'} onChangeText={val => {setEmail(val)}} />
                 </View>
                 
-                <TouchableOpacity style={[styles.borderAndWidth, styles.forgotPasswordBtnContainer, forOpacity]}>
+                {/* <TouchableOpacity style={[styles.borderAndWidth, styles.forgotPasswordBtnContainer, forOpacity]}>
                     <Text style={styles.forgotPasswordBtnContainerText}>Forgot Password</Text>
+                </TouchableOpacity> */}
+                <TouchableOpacity style={[styles.borderAndWidth, styles.forgotPasswordBtnContainer, forOpacity]}>
+                    <View style={[styles.forgotPasswordBtnTextContainer, styles.borderAndWidth]}>
+                        <Text style={styles.forgotPasswordBtnContainerText}>Forgot Password</Text>
+                    </View>
+                    <View style={[styles.forgotPasswordBtnActivityIndicatorContainer, styles.borderAndWidth]}>
+                        <ActivityIndicator size="small" />
+                    </View>
                 </TouchableOpacity>
 
                 <View style={styles.navigationLink}>
@@ -143,13 +151,24 @@ const styles = StyleSheet.create({
       backgroundColor: '#60AA59',
       borderRadius: 10,
       marginTop: 60,
+      flexDirection: 'row',
+      justifyContent: 'center',
   },
+  forgotPasswordBtnTextContainer: {
+    width: '90%',
+    // justifyContent: 'flex-end',
+},
   forgotPasswordBtnContainerText: {
       textAlign: 'center',
       fontSize: 25,
       color: 'white',
+      marginLeft: 37,
       fontFamily: 'Poppins-Regular',
   },
+  forgotPasswordBtnActivityIndicatorContainer: {
+    justifyContent: "center",
+    width: '10%',
+},
   forOpacityEnabled: {
     opacity: 1,
   },

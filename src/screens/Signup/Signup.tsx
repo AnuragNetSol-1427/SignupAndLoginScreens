@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TextInput,  TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 import React, {useState, useRef} from 'react'
 import { useNavigation } from '@react-navigation/native'
 
@@ -76,7 +76,12 @@ const Signup = () => {
                     <TextInput style={styles.textInput} placeholder={'Pincode'} keyboardType={'numeric'} onChangeText={val => {setPincode(val)}} ref={pinRef} />
                 </View>
                 <TouchableOpacity style={[styles.borderAndWidth, styles.signupBtnContainer, forOpacity]}>
-                    <Text style={styles.signupBtnContainerText}>SIGN UP</Text>
+                    <View style={[styles.signupBtnTextContainer, styles.borderAndWidth]}>
+                        <Text style={styles.signupBtnContainerText}>SIGN UP</Text>
+                    </View>
+                    <View style={[styles.signupBtnActivityIndicatorContainer, styles.borderAndWidth]}>
+                        <ActivityIndicator size="small" />
+                    </View>
                 </TouchableOpacity>
                 <View style={styles.signinLink}>
                     <Text style={styles.alreadyHaveAccountText}>Already have an account?</Text>
@@ -96,7 +101,7 @@ const styles = StyleSheet.create({
     // borderAndWidth: {
     //         borderColor: 'black',
     //         borderWidth: 1,
-    //     },
+    // },
     signupParentContainer: {
         backgroundColor: 'white',
         height: '100%',
@@ -177,19 +182,30 @@ const styles = StyleSheet.create({
         backgroundColor: '#60AA59',
         borderRadius: 10,
         marginTop: 60,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    signupBtnTextContainer: {
+        width: '90%',
+        // justifyContent: 'flex-end',
     },
     signupBtnContainerText: {
         textAlign: 'center',
         fontSize: 20,
+        marginLeft: 33,
         color: 'white',
         fontFamily: 'Poppins-Medium',
+    },
+    signupBtnActivityIndicatorContainer: {
+        justifyContent: "center",
+        width: '10%',
     },
     forOpacityEnabled: {
         opacity: 1,
       },
-      forOpacityDisabled: {
+    forOpacityDisabled: {
         opacity: 0.5,
-      },
+    },
     signinLink: {
         marginTop: '5%',
     }, 
