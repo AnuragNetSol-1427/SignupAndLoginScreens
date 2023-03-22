@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
       fontSize: 30,
       color: 'black',
       paddingVertical: 5,
+      fontFamily: 'Poppins-Regular',
   },
   forgotPasswordTagline: {
       // borderColor: 'black',
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
   },
   forgotPasswordTaglineText: {
       fontSize: 16,
+      fontFamily: 'Poppins-Light',
   },
   textInputContainer: {
       // borderColor: 'black',
@@ -127,12 +129,14 @@ const styles = StyleSheet.create({
       borderBottomColor: 'rgb(0,159,59)',
       borderBottomWidth: 1,
       marginTop: 5,
+      fontFamily: 'Poppins-Regular',
   },
   forgotPassword: {
       marginTop: 10,
   },
   forgotPasswordText: {
       textAlign: 'right',
+      fontFamily: 'Poppins-Regular',
   },
   forgotPasswordBtnContainer: {
       padding: 8,
@@ -144,6 +148,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontSize: 25,
       color: 'white',
+      fontFamily: 'Poppins-Regular',
   },
   forOpacityEnabled: {
     opacity: 1,
@@ -156,10 +161,12 @@ const styles = StyleSheet.create({
   }, 
   goToText: {
       textAlign: 'right',
+      fontFamily: 'Poppins-Regular',
   },
   navigationLinkText: {
       textAlign: 'right',
       color: '#60AA59',
+      fontFamily: 'Poppins-Regular',
   }
 })
 

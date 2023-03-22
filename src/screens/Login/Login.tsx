@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'black',
         paddingVertical: 5,
+        fontFamily: 'Poppins-Regular',
     },
     loginTagline: {
         // borderColor: 'black',
@@ -135,6 +136,7 @@ const styles = StyleSheet.create({
     },
     loginTaglineText: {
         fontSize: 16,
+        fontFamily: 'Poppins-Light',
     },
     textInputContainer: {
         // borderColor: 'black',
@@ -145,6 +147,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgb(0,159,59)',
         borderBottomWidth: 1,
         marginTop: 5,
+        fontFamily: 'Poppins-Regular',
     },
     passwordContainer: {
         flexDirection: 'row',
@@ -169,6 +172,7 @@ const styles = StyleSheet.create({
     },
     forgotPasswordText: {
         textAlign: 'right',
+        fontFamily: 'Poppins-Regular',
     },
     loginBtnContainer: {
         padding: 8,
@@ -180,6 +184,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         color: 'white',
+        fontFamily: 'Poppins-Medium',
     },
     forOpacityEnabled: {
         opacity: 1,
@@ -192,10 +197,12 @@ const styles = StyleSheet.create({
     }, 
     doNotHaveAccountText: {
         textAlign: 'right',
+        fontFamily: 'Poppins-Regular',
     },
     signUpLinkText: {
         textAlign: 'right',
         color: '#60AA59',
+        fontFamily: 'Poppins-Regular',
     }
 })
 

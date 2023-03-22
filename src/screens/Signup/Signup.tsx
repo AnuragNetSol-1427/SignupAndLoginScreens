@@ -131,6 +131,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'black',
         paddingVertical: 5,
+        // fontFamily: 'SF-UI-Display-Bold',
+        fontFamily: 'Poppins-Regular',
     },
     signupTagline: {
         // borderColor: 'black',
@@ -139,6 +141,7 @@ const styles = StyleSheet.create({
     },
     signupTaglineText: {
         fontSize: 16,
+        fontFamily: 'Poppins-Light',
     },
     textInputContainer: {
         // borderColor: 'black',
@@ -149,6 +152,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgb(0,159,59)',
         borderBottomWidth: 1,
         marginTop: 5,
+        fontFamily: 'Poppins-Regular',
     },
     passwordContainer: {
         flexDirection: 'row',
@@ -176,8 +180,9 @@ const styles = StyleSheet.create({
     },
     signupBtnContainerText: {
         textAlign: 'center',
-        fontSize: 25,
+        fontSize: 20,
         color: 'white',
+        fontFamily: 'Poppins-Medium',
     },
     forOpacityEnabled: {
         opacity: 1,
@@ -190,10 +195,12 @@ const styles = StyleSheet.create({
     }, 
     alreadyHaveAccountText: {
         textAlign: 'right',
+        fontFamily: 'Poppins-Regular',
     },
     signinLinkText: {
         textAlign: 'right',
         color: '#60AA59',
+        fontFamily: 'Poppins-Regular',
     }
 })
 
